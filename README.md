@@ -1,18 +1,17 @@
-## Binary Search Extension
-Perform a [binary search][wiki] on [Collections][] (i.e. Array, Dictionary, Set), with a few powerful options such as finding the first or last index in the collection, matching an optional [predicate](#predicate)
+## Binary Search Swift Extension
+Perform a [binary search][wiki] on [Collections][] (e.g. [Array][], [Dictionary][], [Set][]), with a few powerful options such as finding the first or last index in the collection, matching an optional [predicate](#predicate)
 , and the ability to [extract](#extract) values from a collection to avoid having to prepare that collection for a binary search. 
 
 ### Methods
-- [binarySearch](#binarySearch) 
-- [binarySearchFirst](#binarySearchFirst)
-- [binarySearchLast](#binarySearchLast)
-- [binarySearchRange](#binarySearchRange)
+- [binarySearch](#binarySearch) - Find the index of the first element that passes the truth test (predicate). The default predicate is `==`.
+- [binarySearchFirst](#binarySearchFirst) - Find the index of the first element in the collection that matches the predicate.
+- [binarySearchLast](#binarySearchLast) - Find the index of the last element in the collection that matches the predicate.
+- [binarySearchRange](#binarySearchRange) - Find the startIndex and endIndex of elements that match the predicate. 
 
 ### Arguments
 - `find` _required_ - The value you're looking for
 - `predicate` _optional_ - A truth test, e.g. `$0 <= $1`, `$0.hasPrefix($1)`, where `$0` is the value of `find` and `$1` is the current element value. See [more](#predicate).
-- `
-extract` _optional_ - The value to compare, e.g. `$0.someVal`, where `someVal` is the same type as the argument for 
+- `extract` _optional_ - The value to compare, e.g. `$0.someVal`, where `someVal` is the same type as the argument for 
 `find`. See [more](#extract).
 
 **Important**
@@ -20,8 +19,6 @@ extract` _optional_ - The value to compare, e.g. `$0.someVal`, where `someVal` i
 
 **Important**
 > Duplicate values are unsupported.
-
-_In all examples below, assume the tests pass_ 
 
 ### Performance Benefit
 Binary Search runs in O(log n), as opposed to linear search which runs in O(1). 
@@ -33,7 +30,9 @@ All binary search methods in this extension return an `Index`, or a `Range<Index
 <a name="binarySearch"></a>
 #### binarySearch
 
-Find an item that is equal to the first argument
+_In all examples below, assume the tests pass._ The tests for the code below are <a href="BinarySearchTests/DocumentationTests.swift">here</a>
+
+Find an item that is equal to the first argument. 
 
 ```Swift
 let sortedInts = [0,1,2,3,4,5,6,7,8,9,10]
@@ -85,23 +84,23 @@ struct Fruit {
   let name:String
 }
 // An Array of Fruits
-let dict = [
+let fruits = [
   Fruit(name:"apple"),
   Fruit(name:"banana"),
   Fruit(name:"orange")
 ]
-guard let index = dict.binarySearch("banana", extract:{$0.name}) else {
-  XCTFail("Failed to find a dictionary with a testValue of 'bananas'")
+guard let index = fruits.binarySearch("banana", extract:{$0.name}) else {
+  XCTFail("Failed to find a dictionary with a name 'bananas'")
   return
 }
 XCTAssertEqual(index, 1)
-XCTAssertEqual(dict[index].name, "banana")
+XCTAssertEqual(fruits[index].name, "banana")
 ```
 
 <a name="binarySearchFirst"></a>
 #### binarySearchFirst
 
-Find the value with the lowest index that meets the predicate
+Find the value with the lowest index that meets the predicate.
 
 ```Swift
 let sortedArray = [0,5,15,75,100]
@@ -109,7 +108,6 @@ guard let indexGreaterThanOrEqual = sortedArray.binarySearchFirst(10, predicate:
   XCTFail("Failed to find an index greater than or equal to 10")
   return
 }
-// Find the first value that's greater than or equal to 10
 XCTAssertEqual(indexGreaterThanOrEqual, 2)
 XCTAssertEqual(sortedArray[indexGreaterThanOrEqual], 15)
 
@@ -130,7 +128,6 @@ guard let indexGreaterThanOrEqual = sortedArray.binarySearchLast(10, predicate: 
   XCTFail("Failed to find an index greater than or equal to 10")
   return
 }
-// Find the first value that's greater than or equal to 10
 XCTAssertEqual(indexGreaterThanOrEqual, 4)
 XCTAssertEqual(sortedArray[indexGreaterThanOrEqual], 100)
 
@@ -153,7 +150,6 @@ guard let range = sortedArray.binarySearchRange(10, predicate:{$0 >= $1}) else {
   XCTFail("Failed to find a range of Ints greater than or equal to 10")
   return
 }
-// Find the range of values that's greater than or equal to 10
 XCTAssertEqual(range.startIndex, 2)
 XCTAssertEqual(sortedArray[range.startIndex], 15)
 XCTAssertEqual(range.endIndex, 4)
@@ -167,7 +163,7 @@ let sortedArray = [0,5,15,75,100,150]
 guard let startIndex = sortedArray.binarySearchFirst(10, predicate:{$0 >= $1}),
   endIndex = sortedArray.binarySearchLast(100, predicate:{$0 <= $1})
   else {
-    XCTFail("Failed to find a range of Ints greater than or equal to 10")
+    XCTFail("Failed to find a range of Ints greater than or equal to 10 and less than or equal to 100")
     return
 }
 // Find the range of values that's greater than or equal to 10
@@ -180,10 +176,14 @@ XCTAssertEqual(sortedArray[endIndex], 100)
 # To Do #
 * [ ] What can the predicate contain?
 * [ ] Support for duplicate values, or throw an error when they're encountered
+* [ ] Clean up tests. Write more tests.
 * [ ] Installation instructions
 * [ ] Run tests on Travis CI
 
 [wiki]: https://en.wikipedia.org/wiki/Binary_search_algorithm
 [wikiPerformance]: https://en.wikipedia.org/wiki/Binary_search_algorithm#Performance "Binary Search Performance"
 [Collections]: https://developer.apple.com/library/watchos/documentation/Swift/Reference/Swift_CollectionType_Protocol/index.html
+[Array]: https://developer.apple.com/library/prerelease/ios/documentation/Swift/Reference/Swift_Array_Structure/
+[Set]: https://developer.apple.com/library/prerelease/ios/documentation/Swift/Reference/Swift_Set_Structure/
+[Dictionary]: https://developer.apple.com/library/prerelease/ios/documentation/Swift/Reference/Swift_Dictionary_Structure/
 

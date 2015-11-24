@@ -1,4 +1,5 @@
 ## Binary Search Swift Extension
+[![Build Status](https://travis-ci.org/giannif/BinarySearch.svg)](https://travis-ci.org/giannif/BinarySearch)
 Perform a [binary search][wiki] on [Collections][] (e.g. [Array][], [Dictionary][], [Set][]), with a few powerful options such as finding the first or last index in the collection, matching an optional [predicate](#predicate)
 , and the ability to [extract](#extract) values from a collection to avoid having to prepare that collection for a binary search. 
 

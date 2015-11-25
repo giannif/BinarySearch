@@ -1,5 +1,6 @@
 ## Binary Search Swift Extension
 [![Build Status](https://travis-ci.org/giannif/BinarySearch.svg)](https://travis-ci.org/giannif/BinarySearch)
+
 Perform a [binary search][wiki] on [Collections][] (e.g. [Array][], [Dictionary][], [Set][]), with a few powerful options such as finding the first or last index in the collection, matching an optional [predicate](#predicate)
 , and the ability to [extract](#extract) values from a collection to avoid having to prepare that collection for a binary search. 
 
@@ -179,7 +180,7 @@ XCTAssertEqual(sortedArray[endIndex], 100)
 * [ ] Support for duplicate values, or throw an error when they're encountered
 * [ ] Clean up tests. Write more tests.
 * [ ] Installation instructions
-* [ ] Run tests on Travis CI
+* [x] Run tests on Travis CI
 
 [wiki]: https://en.wikipedia.org/wiki/Binary_search_algorithm
 [wikiPerformance]: https://en.wikipedia.org/wiki/Binary_search_algorithm#Performance "Binary Search Performance"

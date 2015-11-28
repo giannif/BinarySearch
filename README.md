@@ -23,7 +23,7 @@ Perform a [binary search][wiki] on [Collections][] (e.g. [Array][], [Dictionary]
 > Duplicate values are unsupported.
 
 ### Performance Benefit
-Binary Search runs in O(log n), as opposed to linear search which runs in O(1). 
+Binary Search runs in O(log n), as opposed to linear search which runs in O(n). 
 Meaning, if you use linear search, in the worst case scenario, the number of steps to find your value will equal the number of elements.
 For binary search, this number is [dramatically lower][wikiPerformance]. 
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension CollectionType where Index: RandomAccessIndexType  {
+public extension CollectionType where Index: RandomAccessIndexType  {
   
   func binarySearch<T:Comparable>(find:T,
     extract: Generator.Element -> T = {(el) -> T in return el as! T},

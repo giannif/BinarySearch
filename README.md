@@ -1,8 +1,7 @@
 ## Binary Search Swift Extension
 [![Build Status](https://travis-ci.org/giannif/BinarySearch.svg)](https://travis-ci.org/giannif/BinarySearch)
 
-Perform a [binary search][wiki] on [Collections][] (e.g. [Array][], [Dictionary][], [Set][]), with a few powerful options such as finding the first or last index in the collection, matching an optional [predicate](#predicate)
-, and the ability to [extract](#extract) values from a collection to avoid having to prepare that collection for a binary search. 
+Perform a [binary search][wiki] on [Collections][] (e.g. [Array][], [Dictionary][], [Set][]), with a few powerful options such as finding the first or last index in the collection, matching an optional [predicate](#predicate), and the ability to [extract](#extract) values from a collection to avoid having to prepare that collection for a binary search. 
 
 ### Methods
 - [binarySearch](#binarySearch) - Find the index of the first element that passes the truth test (predicate). The default predicate is `==`.
@@ -32,7 +31,7 @@ All binary search methods in this extension return an `Index`, or a `Range<Index
 <a name="binarySearch"></a>
 #### binarySearch
 
-_In all examples below, assume the tests pass._ The tests for the code below are <a href="BinarySearchTests/DocumentationTests.swift">here</a>
+_In all examples below, assume the tests pass._ The documation code has <a href="BinarySearchTests/DocumentationTests.swift">tests</a>.
 
 Find an item that is equal to the first argument. 
 
@@ -175,11 +174,16 @@ XCTAssertEqual(endIndex, 4)
 XCTAssertEqual(sortedArray[endIndex], 100)
 ```
 
+#### Installation 
+
+Copy the <a href="BinarySearch/BinarySearch.swift">BinarySearch.swift</a> file into your project. 
+
 # To Do #
 * [ ] What can the predicate contain?
 * [ ] Support for duplicate values, or throw an error when they're encountered
 * [ ] Clean up tests. Write more tests.
-* [ ] Installation instructions
+* [ ] Carthage support
+* [x] Installation instructions
 * [x] Run tests on Travis CI
 
 [wiki]: https://en.wikipedia.org/wiki/Binary_search_algorithm

@@ -57,5 +57,23 @@ class BinarySearchTests: XCTestCase {
       XCTAssert(result >= find)
     }
   }
+  
+  func testPredicateGreaterOrEqualFailSafe() {
+    let dictArray = [1.0,2.0,Double.NaN]
+    let result = dictArray.binarySearch(3.0, predicate:{$0 >= $1})
+    XCTAssertNil(result)
+  }
+  
+  func testPredicateLessOrEqualFailSafe() {
+    let dictArray = [1.0,2.0,Double.NaN]
+    let result = dictArray.binarySearch(0.0, predicate:{$0 <= $1})
+    XCTAssertNil(result)
+  }
+  
+  func testPredicateEqualFailSafe() {
+    let dictArray = [1.0,2.0,Double.NaN]
+    let result = dictArray.binarySearch(3.0)
+    XCTAssertNil(result)
+  }
 
 }

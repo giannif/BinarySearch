@@ -19,6 +19,9 @@ public extension CollectionType where Index: RandomAccessIndexType  {
       while (left <= right) {
         let mid = left.advancedBy(left.distanceTo(right) / 2)
         let currentValue:T = extract(self[mid])
+        if left == right {
+          return predicate(currentValue, find) ? left : nil
+        }
         if predicate(currentValue, find) {
           return mid
         }else if currentValue == find {
@@ -27,6 +30,8 @@ public extension CollectionType where Index: RandomAccessIndexType  {
           left = mid.advancedBy(1)
         }else if currentValue > find {
           right = mid.advancedBy(-1)
+        }else {
+          return nil
         }
       }
       return nil
@@ -41,8 +46,8 @@ public extension CollectionType where Index: RandomAccessIndexType  {
       while (left <= right) {
         let mid = left.advancedBy(left.distanceTo(right) / 2)
         let currentValue:T = extract(self[mid])
-        if left == right && predicate(currentValue, find) {
-          return left
+        if left == right {
+          return predicate(currentValue, find) ? left : nil
         }
         if predicate(currentValue, find) {
           if checkLeft(find, mid, extract, predicate) == nil {
@@ -55,6 +60,8 @@ public extension CollectionType where Index: RandomAccessIndexType  {
           left = mid.advancedBy(1)
         }else if currentValue > find {
           right = mid.advancedBy(-1)
+        }else {
+          return nil
         }
       }
       return nil
@@ -69,8 +76,8 @@ public extension CollectionType where Index: RandomAccessIndexType  {
       while (left <= right) {
         let mid = left.advancedBy(left.distanceTo(right) / 2)
         let currentValue:T = extract(self[mid])
-        if left == right && predicate(currentValue, find) {
-          return left
+        if left == right {
+          return predicate(currentValue, find) ? left : nil
         }
         if predicate(currentValue, find) {
           if checkRight(find, mid, extract, predicate) == nil {
@@ -83,6 +90,8 @@ public extension CollectionType where Index: RandomAccessIndexType  {
           left = mid.advancedBy(1)
         }else if currentValue > find {
           right = mid.advancedBy(-1)
+        }else {
+          return nil
         }
       }
       return nil

@@ -11,6 +11,8 @@ import XCTest
 
 class BinarySearchLastTests: XCTestCase {
   
+  let test = (0...100000).map {$0}
+  
   func testFindingClosestValue() {
     let test = [0,3,9,10,11,12,13,18]
     var result = test.binarySearchLast(0, predicate: {$0 >= $1})
@@ -40,5 +42,23 @@ class BinarySearchLastTests: XCTestCase {
     result = test.binarySearchLast(18, predicate: {$0 <= $1})
     XCTAssertEqual(test[result!], 18)
 
+  }
+
+  func testPredicateGreaterOrEqualFailSafe() {
+    let dictArray = [1.0,2.0,Double.NaN]
+    let result = dictArray.binarySearchLast(3.0, predicate:{$0 >= $1})
+    XCTAssertNil(result)
+  }
+  
+  func testPredicateLessOrEqualFailSafe() {
+    let dictArray = [1.0,2.0,Double.NaN]
+    let result = dictArray.binarySearchLast(0.0, predicate:{$0 <= $1})
+    XCTAssertNil(result)
+  }
+  
+  func testPredicateEqualFailSafe() {
+    let dictArray = [1.0,2.0,Double.NaN]
+    let result = dictArray.binarySearchLast(3.0)
+    XCTAssertNil(result)
   }
 }

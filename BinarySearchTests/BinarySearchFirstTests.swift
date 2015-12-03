@@ -75,4 +75,24 @@ class BinarySearchFirstTests: XCTestCase {
     }
   }
   
+  func testPredicateGreaterOrEqualFailSafe() {
+    let dictArray = [1.0,2.0,Double.NaN]
+    let result = dictArray.binarySearchFirst(3.0, predicate:{$0 >= $1})
+    XCTAssertNil(result)
+  }
+  
+  func testPredicateLessOrEqualFailSafe() {
+    let dictArray = [1.0,2.0,Double.NaN]
+    let result = dictArray.binarySearchFirst(0.0, predicate:{$0 <= $1})
+    XCTAssertNil(result)
+  }
+  
+  func testPredicateEqualFailSafe() {
+    let dictArray = [1.0,2.0,Double.NaN]
+    let result = dictArray.binarySearchFirst(3.0)
+    XCTAssertNil(result)
+  }
+  
+  
+  
 }

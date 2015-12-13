@@ -67,7 +67,7 @@
 		007563D61BFA1AE1000ED5EB = {
 			isa = PBXGroup;
 			children = (
-				007563E21BFA1AE1000ED5EB /* BinarySearch */,
+				007563E21BFA1AE1000ED5EB /* Sources */,
 				007563EE1BFA1AE1000ED5EB /* BinarySearchTests */,
 				007563E11BFA1AE1000ED5EB /* Products */,
 			);
@@ -82,14 +82,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		007563E21BFA1AE1000ED5EB /* BinarySearch */ = {
+		007563E21BFA1AE1000ED5EB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				007563E31BFA1AE1000ED5EB /* BinarySearch.h */,
 				007563E51BFA1AE1000ED5EB /* Info.plist */,
 				007563FA1BFA1AF3000ED5EB /* BinarySearch.swift */,
 			);
-			path = BinarySearch;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		007563EE1BFA1AE1000ED5EB /* BinarySearchTests */ = {
@@ -342,7 +342,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = BinarySearch/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hotsoup.BinarySearch;
@@ -361,7 +361,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = BinarySearch/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hotsoup.BinarySearch;

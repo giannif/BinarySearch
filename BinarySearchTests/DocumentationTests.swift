@@ -191,4 +191,30 @@ class DocumentationTests: XCTestCase {
     XCTAssertEqual(endIndex, 4)
     XCTAssertEqual(sortedArray[endIndex], 100)
   }
+  
+  func testInsertionIndexFor() {
+    guard let foundIndex = [0,5,15,75,100].binarySearchInsertionIndexFor(10) else {
+      XCTFail("The find should have succeeded")
+      return
+    }
+    // The value 10 would go at the 2nd index
+    XCTAssertEqual(foundIndex, 2)
+    guard let foundIndex2 = [0,5,15,75,100].binarySearchInsertionIndexFor(-5) else {
+      XCTFail("The find should have succeeded")
+      return
+    }
+    // The value -5 would go at the index 0
+    XCTAssertEqual(foundIndex2, 0)
+    guard let foundIndex3 = [0,5,15,75,100].binarySearchInsertionIndexFor(500) else {
+      XCTFail("The find should have succeeded")
+      return
+    }
+    // The value 500 would go at the end index
+    XCTAssertEqual(foundIndex3, 5)
+    guard let _ = [0,5,15,75,100].binarySearchInsertionIndexFor(75) else {
+      XCTAssertTrue(true, "The return value should be nil")
+      return
+    }
+    XCTFail("The foundIndex should have be nil")
+  }
 }

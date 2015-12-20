@@ -108,6 +108,23 @@ public extension CollectionType where Index: RandomAccessIndexType  {
       return nil
   }
   
+  func binarySearchInsertionIndexFor<T:Comparable>(find:T,
+    extract: Generator.Element -> T = {(el) -> T in return el as! T}
+    ) -> Index? {
+      if let foundIndex = binarySearchLast(find, predicate:{$0 <= $1}, extract:extract) {
+        let val = extract(self[foundIndex])
+        if val != find {
+          return foundIndex.advancedBy(1)
+        }else{
+          return nil
+        }
+      }else if let first = self.first {
+        return find < extract(first) ? startIndex : endIndex
+      }else {
+        return startIndex
+      }
+  }
+  
   private func checkRight<T:Comparable>(find:T, _ mid:Index, _ extract: Generator.Element -> T, _ predicate: (T,T) -> Bool) -> Index?{
     if mid.distanceTo(endIndex) > 0 {
       let index = mid.advancedBy(1)

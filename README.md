@@ -9,6 +9,8 @@ Perform a [binary search][wiki] on [Collections][] (e.g. [Array][], [Dictionary]
 - [binarySearchFirst](#binarySearchFirst) - Find the index of the first element in the collection that matches the predicate.
 - [binarySearchLast](#binarySearchLast) - Find the index of the last element in the collection that matches the predicate.
 - [binarySearchRange](#binarySearchRange) - Find the startIndex and endIndex of elements that match the predicate. 
+- [binarySearchInsertionIndexFor](#binarySearchInsertionIndexFor) - Find the index that an element would be inserted at.
+
 
 ### Arguments
 - `find` _required_ - The value you're looking for
@@ -173,6 +175,43 @@ XCTAssertEqual(startIndex, 2)
 XCTAssertEqual(sortedArray[startIndex], 15)
 XCTAssertEqual(endIndex, 4)
 XCTAssertEqual(sortedArray[endIndex], 100)
+```
+
+<a name="binarySearchInsertionIndexFor"></a>
+#### binarySearchInsertionIndexFor
+
+Returns the `Index` that an element could be inserted at while maintaing the sort. If the return value is nil, the element already exists in the collection.
+
+```Swift
+guard let foundIndex = [0,5,15,75,100].binarySearchInsertionIndexFor(10) else {
+  XCTFail("The find should have succeeded")
+  return
+}
+// The value 10 would go at the 2nd index
+XCTAssertEqual(foundIndex, 2)
+```
+```Swift
+guard let foundIndex = [0,5,15,75,100].binarySearchInsertionIndexFor(-5) else {
+  XCTFail("The find should have succeeded")
+  return
+}
+// The value -5 would go at the start index
+XCTAssertEqual(foundIndex, 0)
+```
+```Swift
+guard let foundIndex = [0,5,15,75,100].binarySearchInsertionIndexFor(500) else {
+  XCTFail("The find should have succeeded")
+  return
+}
+// The value 500 would go at the end index
+XCTAssertEqual(foundIndex, 5)
+```
+```Swift
+guard let _ = [0,5,15,75,100].binarySearchInsertionIndexFor(75) else {
+  XCTAssertTrue(true, "The element already exists")
+  return
+}
+XCTFail("The foundIndex should be nil")
 ```
 
 #### Installation 

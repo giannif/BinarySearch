@@ -14,7 +14,7 @@ import XCTest
 class BinarySearchExtractTests: XCTestCase {
   
   func testExtract() {
-    func convertToDict(val:Int) -> Dictionary<String, Int> {
+    func convertToDict(_ val:Int) -> Dictionary<String, Int> {
       return ["testValue": val]
     }
     let dictArray = (0...10).map(convertToDict)
@@ -32,8 +32,8 @@ class BinarySearchExtractTests: XCTestCase {
     result = dictArray.binarySearchFirst(6, extract:{$0["testValue"]!}, predicate:{$0>=$1})
     XCTAssertEqual(result, 6)
     var rangeResult = dictArray.binarySearchRange(6, extract:{$0["testValue"]!}, predicate:{$0>=$1})
-    XCTAssertEqual(rangeResult?.startIndex, 6)
-    XCTAssertEqual(rangeResult?.endIndex, 10)
+    XCTAssertEqual(rangeResult?.lowerBound, 6)
+    XCTAssertEqual(rangeResult?.upperBound, 10)
     
     // with predicate <=
     result = dictArray.binarySearchFirst(6, extract:{$0["testValue"]!}, predicate:{$0<=$1})
@@ -41,8 +41,8 @@ class BinarySearchExtractTests: XCTestCase {
     result = dictArray.binarySearchLast(6, extract:{$0["testValue"]!}, predicate:{$0<=$1})
     XCTAssertEqual(result, 6)
     rangeResult = dictArray.binarySearchRange(6, extract:{$0["testValue"]!}, predicate:{$0<=$1})
-    XCTAssertEqual(rangeResult?.startIndex, 0)
-    XCTAssertEqual(rangeResult?.endIndex, 6)
+    XCTAssertEqual(rangeResult?.lowerBound, 0)
+    XCTAssertEqual(rangeResult?.upperBound, 6)
   
   }
 }

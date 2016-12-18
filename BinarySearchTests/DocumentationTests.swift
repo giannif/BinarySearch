@@ -67,15 +67,15 @@ class DocumentationTests: XCTestCase {
     
     struct Album {
       let name:String
-      let date:NSTimeInterval
+      let date:TimeInterval
       init(_ name:String, _ date:String){
         self.name = name
         self.date = Album.getDate(date)
       }
-      static func getDate(date: String) -> NSTimeInterval{
-        let formatter = NSDateFormatter()
+      static func getDate(_ date: String) -> TimeInterval{
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.dateFromString(date)!.timeIntervalSince1970
+        return formatter.date(from: date)!.timeIntervalSince1970
       }
     }
     
@@ -120,13 +120,13 @@ class DocumentationTests: XCTestCase {
         XCTFail("Failed to find a Rolling Stones album after 1970")
         return
     }
-    XCTAssertEqual(albumSixties.startIndex, 2)
-    XCTAssertEqual(albumSixties.endIndex, 3)
+    XCTAssertEqual(albumSixties.lowerBound, 2)
+    XCTAssertEqual(albumSixties.upperBound, 3)
   }
   
   func testFirst() {
     let sortedArray = [0,5,15,75,100]
-    func compare(val:Int, val2:Int) -> Bool {
+    func compare(_ val:Int, val2:Int) -> Bool {
       return val > 10
     }
     guard let indexGreaterThanOrEqual = sortedArray.binarySearchFirst(10, predicate: compare) else {
@@ -170,17 +170,17 @@ class DocumentationTests: XCTestCase {
       return
     }
     // Find the range of values that's greater than or equal to 10
-    XCTAssertEqual(range.startIndex, 2)
-    XCTAssertEqual(sortedArray[range.startIndex], 15)
-    XCTAssertEqual(range.endIndex, 4)
-    XCTAssertEqual(sortedArray[range.endIndex], 100)
+    XCTAssertEqual(range.lowerBound, 2)
+    XCTAssertEqual(sortedArray[range.lowerBound], 15)
+    XCTAssertEqual(range.upperBound, 4)
+    XCTAssertEqual(sortedArray[range.upperBound], 100)
     
   }
   
   func testManualRange() {
     let sortedArray = [0,5,15,75,100,150]
     guard let startIndex = sortedArray.binarySearchFirst(10, predicate:{$0 >= $1}),
-      endIndex = sortedArray.binarySearchLast(100, predicate:{$0 <= $1})
+      let endIndex = sortedArray.binarySearchLast(100, predicate:{$0 <= $1})
       else {
         XCTFail("Failed to find a range of Ints greater than or equal to 10")
         return

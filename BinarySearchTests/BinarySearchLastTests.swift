@@ -45,19 +45,19 @@ class BinarySearchLastTests: XCTestCase {
   }
 
   func testPredicateGreaterOrEqualFailSafe() {
-    let dictArray = [1.0,2.0,Double.NaN]
+    let dictArray = [1.0,2.0,Double.nan]
     let result = dictArray.binarySearchLast(3.0, predicate:{$0 >= $1})
     XCTAssertNil(result)
   }
   
   func testPredicateLessOrEqualFailSafe() {
-    let dictArray = [1.0,2.0,Double.NaN]
+    let dictArray = [1.0,2.0,Double.nan]
     let result = dictArray.binarySearchLast(0.0, predicate:{$0 <= $1})
     XCTAssertNil(result)
   }
   
   func testPredicateEqualFailSafe() {
-    let dictArray = [1.0,2.0,Double.NaN]
+    let dictArray = [1.0,2.0,Double.nan]
     let result = dictArray.binarySearchLast(3.0)
     XCTAssertNil(result)
   }

@@ -92,31 +92,30 @@ class DocumentationTests: XCTestCase {
     ]
     
     guard let firstStonesAlbumSeventies = stonesAlbums.binarySearchFirst(Album.getDate("1970-01-01"),
-      // We want to find the first value greater than Jan 1, 1970
-      predicate: {$0 >= $1},
       // Extract the date value to test with the predicate above
-      extract: {$0.date}) else {
+      extract: {$0.date},
+      // We want to find the first value greater than Jan 1, 1970
+      predicate: {$0 >= $1}) else {
         XCTFail("Failed to find a Rolling Stones album after 1970")
         return
     }
     XCTAssertEqual(firstStonesAlbumSeventies, 2)
     XCTAssertEqual(stonesAlbums[firstStonesAlbumSeventies].name, "Sticky Fingers")
     guard let lastStonesAlbumSixties = stonesAlbums.binarySearchLast(Album.getDate("1970-01-01"),
-      // We want to find the first value greater than Jan 1, 1970
-      predicate: {$0 <= $1},
       // Extract the date value to test with the predicate above
-      extract: {$0.date}) else {
+      extract: {$0.date},
+      // We want to find the first value greater than Jan 1, 1970
+      predicate: {$0 <= $1}) else {
         XCTFail("Failed to find a Rolling Stones album after 1970")
         return
     }
     XCTAssertEqual(lastStonesAlbumSixties, 1)
     XCTAssertEqual(stonesAlbums[lastStonesAlbumSixties].name, "Let It Bleed")
     guard let albumSixties = stonesAlbums.binarySearchRange(Album.getDate("1970-01-01"),
-      // We want to find the first value greater than Jan 1, 1970
-      predicate: {$0 >= $1 && $0 < Album.getDate("1978-01-01")},
       // Extract the date value to test with the predicate above
-      extract: {$0.date}) else {
-        
+      extract: {$0.date},
+      // We want to find the first value greater than Jan 1, 1970
+      predicate: {$0 >= $1 && $0 < Album.getDate("1978-01-01")}) else {
         XCTFail("Failed to find a Rolling Stones album after 1970")
         return
     }

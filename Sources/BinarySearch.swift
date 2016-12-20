@@ -108,7 +108,7 @@ public extension Collection where Index: Strideable  {
       return nil
   }
   
-  func binarySearchInsertionIndexFor<T:Comparable>(find:T,
+  func binarySearchInsertionIndexFor<T:Comparable>(_ find:T,
     extract: (Iterator.Element) -> T = {(el) -> T in return el as! T}
     ) -> Index? {
       if let foundIndex = binarySearchLast(find, extract:extract, predicate:{$0 <= $1}) {

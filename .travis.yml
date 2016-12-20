@@ -6,5 +6,5 @@ before_install:
   - brew outdated xctool || brew upgrade xctool
 
 script:
-- xctool -scheme BinarySearch -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-- xctool test -scheme BinarySearch -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xcodebuild -scheme BinarySearch -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xcodebuild test -scheme BinarySearch -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO

@@ -8,6 +8,41 @@
 
 import XCTest
 @testable import BinarySearch
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l <= r
+  default:
+    return !(rhs < lhs)
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class BinarySearchFirstTests: XCTestCase {
   
@@ -76,19 +111,19 @@ class BinarySearchFirstTests: XCTestCase {
   }
   
   func testPredicateGreaterOrEqualFailSafe() {
-    let dictArray = [1.0,2.0,Double.NaN]
+    let dictArray = [1.0,2.0,Double.nan]
     let result = dictArray.binarySearchFirst(3.0, predicate:{$0 >= $1})
     XCTAssertNil(result)
   }
   
   func testPredicateLessOrEqualFailSafe() {
-    let dictArray = [1.0,2.0,Double.NaN]
+    let dictArray = [1.0,2.0,Double.nan]
     let result = dictArray.binarySearchFirst(0.0, predicate:{$0 <= $1})
     XCTAssertNil(result)
   }
   
   func testPredicateEqualFailSafe() {
-    let dictArray = [1.0,2.0,Double.NaN]
+    let dictArray = [1.0,2.0,Double.nan]
     let result = dictArray.binarySearchFirst(3.0)
     XCTAssertNil(result)
   }

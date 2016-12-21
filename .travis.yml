@@ -1,4 +1,4 @@
-osx_image: xcode7.1
+osx_image: xcode8.2
 language: objective-c
 
 before_install:
@@ -6,5 +6,5 @@ before_install:
   - brew outdated xctool || brew upgrade xctool
 
 script:
-- xctool -scheme BinarySearch -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-- xctool test -scheme BinarySearch -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xcodebuild -scheme BinarySearch -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2'
+- xcodebuild test -scheme BinarySearch -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2'

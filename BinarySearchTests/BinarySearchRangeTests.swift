@@ -15,33 +15,33 @@ class BinarySearchRangeTests: XCTestCase {
     var test = [0,3,9,10,11,12,13,18]
     for input in test {
       let result = test.binarySearchRange(input, predicate: {$0 >= $1})
-      XCTAssertEqual(result?.startIndex, test.indexOf(input))
-      XCTAssertEqual(result?.endIndex, test.count - 1)
+      XCTAssertEqual(result?.lowerBound, test.index(of: input))
+      XCTAssertEqual(result?.upperBound, test.count - 1)
     }
     for input in test {
       let result = test.binarySearchRange(input, predicate: {$0 <= $1})
-      XCTAssertEqual(result?.startIndex, 0)
-      XCTAssertEqual(result?.endIndex, test.indexOf(input))
+      XCTAssertEqual(result?.lowerBound, 0)
+      XCTAssertEqual(result?.upperBound, test.index(of: input))
     }
     let intermediateVals = [1,2,4,5,6,7,8,14,15,16,17]
     let expecteStart = [1,1,2,2,2,2,2,7,7,7,7]
-    for (index, input) in intermediateVals.enumerate() {
+    for (index, input) in intermediateVals.enumerated() {
       let result = test.binarySearchRange(input, predicate: {$0 >= $1})
-      XCTAssertEqual(result?.startIndex, expecteStart[index])
-      XCTAssertEqual(result?.endIndex, test.count - 1)
+      XCTAssertEqual(result?.lowerBound, expecteStart[index])
+      XCTAssertEqual(result?.upperBound, test.count - 1)
     }
     let expectedEnd = [0,0,1,1,1,1,1,6,6,6,6]
-    for (index, input) in intermediateVals.enumerate() {
+    for (index, input) in intermediateVals.enumerated() {
       let result = test.binarySearchRange(input, predicate: {$0 <= $1})
-      XCTAssertEqual(result?.startIndex, 0)
-      XCTAssertEqual(result?.endIndex, expectedEnd[index])
+      XCTAssertEqual(result?.lowerBound, 0)
+      XCTAssertEqual(result?.upperBound, expectedEnd[index])
     }
 
     test = [0,3,9,10,11,12,13]
     for input in test {
       let result = test.binarySearchRange(input, predicate: {$0 >= $1})
-      XCTAssertEqual(result?.startIndex, test.indexOf(input))
-      XCTAssertEqual(result?.endIndex, test.count - 1)
+      XCTAssertEqual(result?.lowerBound, test.index(of: input))
+      XCTAssertEqual(result?.upperBound, test.count - 1)
     }
   }
 }

@@ -14,8 +14,8 @@ class PerformanceTests: XCTestCase {
   func testFindingClosestValue() {
     let test = (0...100000).map {$0}
     var numberOfSteps = 0
-    func counter(val1:Int, val2:Int) -> Bool {
-      numberOfSteps++
+    func counter(_ val1:Int, val2:Int) -> Bool {
+      numberOfSteps += 1
       return val1 == val2
     }
     guard let result = test.binarySearch(2500, predicate:counter) else {
@@ -29,8 +29,8 @@ class PerformanceTests: XCTestCase {
   func testLogN() {
     let test = (0...200000).map {$0}
     var numberOfSteps = 0
-    func counter(val1:Int, val2:Int) -> Bool {
-      numberOfSteps++
+    func counter(_ val1:Int, val2:Int) -> Bool {
+      numberOfSteps += 1
       return val1 == val2
     }
     guard let result = test.binarySearch(2500, predicate:counter) else {

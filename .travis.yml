@@ -6,5 +6,5 @@ before_install:
   - brew outdated xctool || brew upgrade xctool
 
 script:
-- xcodebuild -scheme BinarySearch -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2'
-- xcodebuild test -scheme BinarySearch -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2'
+- xcodebuild -scheme BinarySearch -destination 'id=22FA2149-1241-469C-BF6D-462D3837DB72'
+- xcodebuild test -scheme BinarySearch -destination 'id=22FA2149-1241-469C-BF6D-462D3837DB72'
